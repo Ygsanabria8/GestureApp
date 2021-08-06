@@ -1,0 +1,34 @@
+name: gestureapp
+description: A new Flutter project.
+
+publish_to:
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/fonts/
+    - assets/images/
+  fonts:
+    - family: Amaranth
+      fonts:
+        - asset: assets/fonts/Amaranth-Bold.ttf
+          weight: 900
+        - asset: assets/fonts/Amaranth-BoldItalic.ttf
+          weight: 800
+        - asset: assets/fonts/Amaranth-Italic.ttf
+          weight: 600
+        - asset: assets/fonts/Amaranth-Regular.ttf
+          weight: 400
+  uses-material-design: true
