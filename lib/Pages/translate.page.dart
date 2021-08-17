@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gestureapp/Pages/moda.type.page.dart';
+import 'package:gestureapp/Pages/modal.error.page.dart';
 import 'package:gestureapp/constans.dart';
 import 'package:gestureapp/widgets/appbar.widget.dart';
 import 'package:gestureapp/widgets/button.widget.dart';
 
-import 'modal.page.dart';
+
 
 class Translate extends StatelessWidget {
 
   void _onPress(BuildContext context) {
-  ModalInfo(context);
+    ModalType(context);
   }
 
   @override

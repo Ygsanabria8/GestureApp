@@ -4,7 +4,7 @@ import 'package:gestureapp/widgets/button.widget.dart';
 import '../constans.dart';
 
 
-void ModalInfo(BuildContext context)  {
+void ModalError(BuildContext context,)  {
 
   void _onPress(BuildContext context) {
     Navigator.pop(context);
@@ -47,7 +47,7 @@ void ModalInfo(BuildContext context)  {
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
               Text(
-                'Cancelar',
+                'Error',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: fontFamily,
@@ -62,7 +62,7 @@ void ModalInfo(BuildContext context)  {
               Container(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: Text(
-                  '¿Estás seguro de cancelar la traducción?',
+                  'Hemos tenido un error interno, por favor inténtalo de nuevo',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: fontFamily,
@@ -76,7 +76,7 @@ void ModalInfo(BuildContext context)  {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               ButtonLight(
-                buttonName: 'REGRESAR A LA TRADUCCIÓN',
+                buttonName: 'VOLVER A INTENTAR',
                 onPressed: _onPress,
               ),
               SizedBox(
@@ -85,7 +85,7 @@ void ModalInfo(BuildContext context)  {
               GestureDetector(
                 onTap: () => {Navigator.pop(context)},
                 child: Text(
-                  'CANCELAR TRADUCCIÓN',
+                  'VOLVER AL INICIO',
                   style: TextStyle(
                     color: secondary,
                     fontSize: MediaQuery.of(context).textScaleFactor * 18,
