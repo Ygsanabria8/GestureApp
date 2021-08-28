@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gestureapp/widgets/appbar.widget.dart';
 import 'package:gestureapp/widgets/button.widget.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../constans.dart';
 
@@ -23,6 +24,10 @@ class _CameraState extends State<Camera> {
   }
 
   Future getImageCamera() async {
+    var status = await Permission.camera.status;
+    if (status.isDenied){
+      Permission.camera.request();
+    }
     final XFile? image = await picker.pickImage(source: ImageSource.camera,);
 
     setState(() {
@@ -31,6 +36,10 @@ class _CameraState extends State<Camera> {
   }
 
   Future getImageGallery() async {
+    var status = await Permission.camera.status;
+    if (status.isDenied){
+      Permission.camera.request();
+    }
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
