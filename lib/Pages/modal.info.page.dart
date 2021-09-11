@@ -4,7 +4,7 @@ import 'package:gestureapp/widgets/button.widget.dart';
 import '../constans.dart';
 
 
-void ModalError(BuildContext context,)  {
+void ModalInfo(BuildContext context,String title)  {
 
   void _onPress(BuildContext context) {
     Navigator.pop(context);
@@ -47,7 +47,7 @@ void ModalError(BuildContext context,)  {
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
               Text(
-                'Error',
+                'Vuelve a intentarlo',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: fontFamily,
@@ -62,7 +62,7 @@ void ModalError(BuildContext context,)  {
               Container(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: Text(
-                  'Ha sucedido un error, por favor inténtalo de nuevo',
+                  title,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: fontFamily,

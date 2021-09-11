@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gestureapp/Pages/modal.error.page.dart';
+import 'package:gestureapp/Pages/modal.info.page.dart';
+import 'package:gestureapp/Pages/response.image.page.dart';
 import 'package:gestureapp/provider/user.provider.dart';
 import 'package:gestureapp/widgets/appbar.widget.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,6 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 import '../constans.dart';
+import 'modal.cancel.page.dart';
 
 class Camera extends StatefulWidget {
   @override
@@ -18,6 +22,7 @@ class Camera extends StatefulWidget {
 class _CameraState extends State<Camera> {
   late XFile? _image = null;
   var picker = ImagePicker();
+  var message = "";
 
   Future getImageCamera() async {
     var status = await Permission.camera.status;
@@ -26,6 +31,7 @@ class _CameraState extends State<Camera> {
     }
     final XFile? image = await picker.pickImage(
       source: ImageSource.camera,
+      imageQuality: 10
     );
 
     setState(() {
@@ -176,7 +182,24 @@ class _CameraState extends State<Camera> {
                                             BorderRadius.circular(10))),
                               ),
                               onPressed: () async {
-                                await userProvider.GetTraduction(_image!);
+                                message = await userProvider.GetTraduction(_image!);
+                                switch (message){
+                                  case "NOT_FOUND":
+                                      ModalInfo(context, "No hemos encontrado esta seña, por favor ingresa otra seña.");
+                                    break;
+                                  case "ERROR":
+                                      ModalError(context);
+                                    break;
+                                  case "TRY_AGAIN":
+                                    ModalInfo(context, "No se ha encontrado una mano en la imagen, por favor intentalo de nuevo.");
+                                    break;
+                                  default:
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(builder: (BuildContext context) => new ResponseImage(image: _image, word: message))
+                                    );
+                                    break;
+                                }
                               },
                               child: Text(
                                 'TRADUCIR',
@@ -216,8 +239,7 @@ class _CameraState extends State<Camera> {
                           ),
                           GestureDetector(
                             onTap: () => {
-                              Navigator.popUntil(
-                                  context, ModalRoute.withName('home'))
+                              ModalCancel(context)
                             },
                             child: Text(
                               'CANCELAR TRADUCCIÓN',

@@ -76,14 +76,15 @@ void ModalCancel(BuildContext context,)  {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               ButtonLight(
-                buttonName: 'REGRESAR A LA TRADUCCIÓN',
+                buttonName: 'REGRESAR',
                 onPressed: _onPress,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               GestureDetector(
-                onTap: () => {Navigator.pop(context)},
+                onTap: () => Navigator.popUntil(
+                    context, ModalRoute.withName('home')),
                 child: Text(
                   'CANCELAR TRADUCCIÓN',
                   style: TextStyle(
