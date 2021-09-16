@@ -9,6 +9,7 @@ import 'package:gestureapp/provider/user.provider.dart';
 import 'package:gestureapp/widgets/appbar.widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:progress_loading_button/progress_loading_button.dart';
 
 
 import '../constans.dart';
@@ -171,24 +172,28 @@ class _CameraState extends State<Camera> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.75,
                             height: MediaQuery.of(context).size.height * 0.08,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(primary),
-                                elevation: MaterialStateProperty.all(5),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10))),
+                            child: LoadingButton(
+                              color: primary,
+                              borderRadius: 10,
+                              defaultWidget: Text(
+                                'TRADUCIR',
+                                style: TextStyle(
+                                  color: secondary,
+                                  fontSize:
+                                  MediaQuery.of(context).textScaleFactor *
+                                      20,
+                                  fontFamily: fontFamily,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               onPressed: () async {
                                 message = await userProvider.GetTraduction(_image!);
                                 switch (message){
                                   case "NOT_FOUND":
-                                      ModalInfo(context, "No hemos encontrado esta seña, por favor ingresa otra seña.");
+                                    ModalInfo(context, "No hemos encontrado esta seña, por favor ingresa otra seña.");
                                     break;
                                   case "ERROR":
-                                      ModalError(context);
+                                    ModalError(context);
                                     break;
                                   case "TRY_AGAIN":
                                     ModalInfo(context, "No se ha encontrado una mano en la imagen, por favor intentalo de nuevo.");
@@ -201,17 +206,6 @@ class _CameraState extends State<Camera> {
                                     break;
                                 }
                               },
-                              child: Text(
-                                'TRADUCIR',
-                                style: TextStyle(
-                                  color: secondary,
-                                  fontSize:
-                                      MediaQuery.of(context).textScaleFactor *
-                                          20,
-                                  fontFamily: fontFamily,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
                             ),
                           ),
                           SizedBox(
