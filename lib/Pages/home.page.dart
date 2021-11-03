@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:gestureapp/Pages/translate.page.dart';
 
 import '../constans.dart';
+import 'help.page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int indexTap = 0;
-  final List<Widget> widgetsChildren = [Translate(),Translate()];
+  final List<Widget> widgetsChildren = [Translate(),Help()];
 
   void onTapTapped(int index) {
     setState(() {

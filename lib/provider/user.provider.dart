@@ -13,7 +13,7 @@ class UserProvider {
       'imageString':img64
     };
     print(img64);
-    var url = Uri.parse('https://24b2-186-84-22-0.ngrok.io/api/gesture');
+    var url = Uri.parse('https://965d-186-84-22-0.ngrok.io/api/gesture');
     var res = await http.post(url,body: json.encode(body));
     var response = json.decode(res.body);
     if (res.statusCode == 404){
