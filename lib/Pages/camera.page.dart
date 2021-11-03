@@ -32,7 +32,7 @@ class _CameraState extends State<Camera> {
     }
     final XFile? image = await picker.pickImage(
       source: ImageSource.camera,
-      imageQuality: 10
+      imageQuality: 70
     );
 
     setState(() {
